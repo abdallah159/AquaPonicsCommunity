@@ -51,4 +51,7 @@
     <string name="values_alarm">Set Alarm Value</string>
     <string name="notification">Notifications</string>
 
+
+    <string name="open_weather_maps_app_id">AIzaSyC_cbq4YL9tI_5vMLXvjk4OuU3sKszj9z4</string>
+    <string name="place_not_found">Sorry, no weather data found.</string>
 </resources>

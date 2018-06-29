@@ -35,6 +35,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.StorageReference;
 
+import in.tvac.akshayejh.photoblog.utilities.GPSTracker;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     SharedPreferences ShredRef;
@@ -66,10 +68,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     DrawerLayout drawer;
 
+
+    TextView cityNameTV;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /*
+         * GPS Tracker I hope that it will run
+         * */
+
+         GPSTracker mGPS = new GPSTracker(this);
+
+        cityNameTV = findViewById(R.id.location);
+        if (mGPS.canGetLocation) {
+            mGPS.getLocation();
+            Toast.makeText(this, ""+mGPS.getLatitude()+mGPS.getLongitude(), Toast.LENGTH_SHORT).show();
+         //   cityNameTV.setText("Lat" + mGPS.getLatitude() + "Lon" + mGPS.getLongitude());
+        } else {
+            cityNameTV.setText("Unabletofind");
+        }
 
         ShredRef = this.getSharedPreferences("CurrentUser", this.MODE_PRIVATE);
         IS_ADMIN = ShredRef.getString("isAdmin", "false");

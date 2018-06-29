@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,8 +29,14 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import in.tvac.akshayejh.photoblog.utilities.CityPreference;
+import in.tvac.akshayejh.photoblog.utilities.FetchWeather;
+import in.tvac.akshayejh.photoblog.utilities.GPSTracker;
 
 
 /**
@@ -47,6 +54,9 @@ public class HomeFragment extends Fragment {
     private DocumentSnapshot lastVisible;
     private Boolean isFirstPageFirstLoad = true;
 
+    TextView cityNameTV;
+
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -55,6 +65,11 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
+
+
+        // Weather
+        //  updateWeatherData(new CityPreference(getActivity()).getCity());
+
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -68,7 +83,7 @@ public class HomeFragment extends Fragment {
         blog_list_view.setAdapter(blogRecyclerAdapter);
         blog_list_view.setHasFixedSize(true);
 
-        if(firebaseAuth.getCurrentUser() != null) {
+        if (firebaseAuth.getCurrentUser() != null) {
 
             firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -79,7 +94,7 @@ public class HomeFragment extends Fragment {
 
                     Boolean reachedBottom = !recyclerView.canScrollVertically(1);
 
-                    if(reachedBottom){
+                    if (reachedBottom) {
 
                         loadMorePost();
 
@@ -137,6 +152,74 @@ public class HomeFragment extends Fragment {
 
         // Inflate the layout for this fragment
         return view;
+
+
+        /*
+         * GPS Tracker I hope that it will run
+         * */
+
+       /*  GPSTracker mGPS = new GPSTracker(getActivity());
+
+        cityNameTV = container.findViewById(R.id.location);
+        if (mGPS.canGetLocation) {
+            mGPS.getLocation();
+            cityNameTV.setText("Lat" + mGPS.getLatitude() + "Lon" + mGPS.getLongitude());
+        } else {
+            cityNameTV.setText("Unabletofind");
+        }
+
+
+
+    }
+
+    /*
+     * Temp Tracker I hope that it will run
+     * */
+
+     /*
+     private void renderWeather(JSONObject json, ViewGroup container) {
+
+
+        TextView temprature = container.findViewById(R.id.temprature);
+        try {
+
+            JSONObject main = json.getJSONObject("main");
+
+
+            temprature.setText(
+                    String.format("%.2f", main.getDouble("temp")) + " ℃");
+
+        } catch (Exception e) {
+            Log.e("SimpleWeather", "One or more fields not found in the JSON data");
+        }
+    }
+
+    private void updateWeatherData(final String city) {
+        new Thread() {
+            public void run() {
+                ViewGroup container = null;
+                final JSONObject json = FetchWeather.getJSON(getActivity(), city);
+                if (json == null) {
+                    container.post(new Runnable() {
+                        public void run() {
+                            Toast.makeText(getActivity(),
+                                    getActivity().getString(R.string.place_not_found),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+                } else {
+                    container.post(new Runnable() {
+                        public void run() {
+                            renderWeather(json, null);
+                        }
+                    });
+                }
+            }
+        }.start();
+    }
+     */
+
+        //The end of bulshit
     }
 
     public void loadMorePost(){
