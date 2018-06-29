@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:tag="accountFragment"
+    tools:context=".AccountFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="@string/system_preview"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="@dimen/aboutTitle" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="sajksdbfvjgvdjbvjkdfjkdsjsdafka;klfgkrferjknnmfdfklsjfoweiofjlkfjklsjfklsdnfklknfjkrnfjkvnfdk.sjvfkjsvrjksnv,fnvjkksdfnsvkdfjkvdfjkvjkvdfknvkfdgvkjfdnvm,dfnjknsdf,.maslhfksdnv,vjklasdhlfvsdkvnsd,fkshdfklfhkl"
+        android:textColor="@color/colorBlack"
+        android:textSize="17sp" />
+
+</FrameLayout>

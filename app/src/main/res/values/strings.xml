@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">AquaPonics</string>
+    <string name="pass_hint">Password...</string>
+    <string name="email_hint">Your Email...</string>
+    <string name="login_logo_desc">Logo Login Page</string>
+    <string name="login_btn_text">Login to account</string>
+    <string name="login_reg_btn_text">Need a new Account?</string>
+    <string name="action_search_text">Search</string>
+    <string name="action_setting_text">Account Settings</string>
+    <string name="action_logout_text">Logout</string>
+    <string name="reg_btn_text">Create new Account</string>
+    <string name="reg_login_text">Already have an Account?</string>
+    <string name="reg_pass_text">Password...</string>
+    <string name="reg_confirm_pass_text">Confirm Password...</string>
+
+
+    <string name="setup_name_hint">Your Name...</string>
+    <string name="setup_save_btn">Save Account Settings</string>
+    <string name="setup_adress_hint_text">Your Adress ...</string>
+    <string name="setup_name_hint_text">Your Name ...</string>
+    <string name="setup_mobile_hint_text">Your Mobile Number ...</string>
+    <string name="setup_job_hint_text">Your Job ...</string>
+
+
+    <string name="setup_btn_name_text">Save Account Settings</string>
+    <string name="post_desc_hint">Add Description ...</string>
+    <string name="new_post_btn_hint">Post Blog</string>
+    <string name="bottom_home_text">Home</string>
+    <string name="bottom_notification_text">Notification</string>
+    <string name="bottom_ac_text">Account</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="has_been_posted_in_aquaponic">Has been Posted in AquaPonic</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="system_preview">System Preview</string>
+
+
+    <string name="water_temprature">Water Temp Now..</string>
+    <string name="ph_value">Ph Value</string>
+    <string name="water_level">Water Level</string>
+    <string name="amonia_value">Amonia Value</string>
+    <string name="data_observing">Watch Out The Data</string>
+    <string name="values_alarm">Set Alarm Value</string>
+    <string name="notification">Notifications</string>
+
+</resources>

@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "245817261740",
+    "firebase_url": "https://aquaponics-9218a.firebaseio.com",
+    "project_id": "aquaponics-9218a",
+    "storage_bucket": "aquaponics-9218a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245817261740:android:a120e9cfc16cb557",
+        "android_client_info": {
+          "package_name": "com.example.mohammed.graduationproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "245817261740-lcd593ihcakp07gqerhrli8t4bps3er9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mohammed.graduationproject",
+            "certificate_hash": "e66275832b831afda43f8c940b3bf20713880a88"
+          }
+        },
+        {
+          "client_id": "245817261740-fuu29kvbu1e1gk7kdbk5u9cqie1rqol9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1yQ8IlHSextjOz2ZIo9yd61uZzK2EmKE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "245817261740-fuu29kvbu1e1gk7kdbk5u9cqie1rqol9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245817261740:android:f2197643bf0111e7",
+        "android_client_info": {
+          "package_name": "in.tvac.akshayejh.photoblog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "245817261740-fuu29kvbu1e1gk7kdbk5u9cqie1rqol9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1yQ8IlHSextjOz2ZIo9yd61uZzK2EmKE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
