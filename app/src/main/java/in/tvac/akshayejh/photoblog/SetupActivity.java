@@ -11,6 +11,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
@@ -24,8 +26,13 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -35,7 +42,9 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -47,6 +56,12 @@ public class SetupActivity extends AppCompatActivity {
 
     private CircleImageView setupImage;
     private Uri mainImageURI = null;
+
+
+    private RecyclerView blog_list_view;
+    private List<BlogPost> blog_list;
+    static  ProfilePostRecyclerAdapter blogRecyclerAdapter;
+
 
     private String user_id;
 
@@ -62,7 +77,12 @@ public class SetupActivity extends AppCompatActivity {
 
     private Bitmap compressedImageFile;
 
-    private String IS_ADMIN = "false" ;
+
+    private DocumentSnapshot lastVisible;
+    private Boolean isFirstPageFirstLoad = true;
+
+
+    private String IS_ADMIN = "false";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +94,13 @@ public class SetupActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Account Setup");
 
 
+        blog_list = new ArrayList<>();
+        blog_list_view = findViewById(R.id.profile_post_list);
+
+        blogRecyclerAdapter = new ProfilePostRecyclerAdapter(blog_list);
+        blog_list_view.setLayoutManager(new LinearLayoutManager(this));
+        blog_list_view.setAdapter(blogRecyclerAdapter);
+        blog_list_view.setHasFixedSize(true);
 
 
         setupImage = findViewById(R.id.setup_image);
@@ -94,14 +121,87 @@ public class SetupActivity extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
 
 
+        if (firebaseAuth.getCurrentUser() != null) {
+
+            firebaseFirestore = FirebaseFirestore.getInstance();
+
+            blog_list_view.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+
+                    Boolean reachedBottom = !recyclerView.canScrollVertically(1);
+
+                    if (reachedBottom) {
+
+                        loadMorePost();
+
+                    }
+
+                }
+            });
+
+
+            Query firstQuery = firebaseFirestore.collection("Posts").orderBy("timestamp", Query.Direction.DESCENDING).limit(3);
+            firstQuery.addSnapshotListener(this, new EventListener<QuerySnapshot>() {
+                @Override
+                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+
+                    if (!documentSnapshots.isEmpty()) {
+
+                        if (isFirstPageFirstLoad) {
+
+                            lastVisible = documentSnapshots.getDocuments().get(documentSnapshots.size() - 1);
+                            blog_list.clear();
+
+                        }
+
+                        for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
+
+                            if (doc.getType() == DocumentChange.Type.ADDED) {
+
+                                String blogPostId = doc.getDocument().getId();
+                                BlogPost blogPost = doc.getDocument().toObject(BlogPost.class).withId(blogPostId);
+
+                                if (isFirstPageFirstLoad) {
+
+                                    if (user_id.equals(blogPost.getUser_id())) {
+                                        blog_list.add(blogPost);
+                                    }
+
+                                } else {
+                                    if (user_id.equals(blogPost.getUser_id())) {
+
+                                        blog_list.add(0, blogPost);
+                                    }
+
+                                }
+
+
+                                blogRecyclerAdapter.notifyDataSetChanged();
+
+                            }
+                        }
+
+                        isFirstPageFirstLoad = false;
+
+                    }
+
+                }
+
+            });
+
+        }
+
+
         user_id = firebaseAuth.getCurrentUser().getUid();
         firebaseFirestore.collection("Users").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
 
-                    if(task.getResult().exists()){
+                    if (task.getResult().exists()) {
 
                         String name = task.getResult().getString("name");
                         String image = task.getResult().getString("image");
@@ -148,7 +248,7 @@ public class SetupActivity extends AppCompatActivity {
                 final String user_job = setupJob.getText().toString();
                 final String user_mobile = setupMobile.getText().toString();
 
-                if (!TextUtils.isEmpty(user_name) && !TextUtils.isEmpty(user_adress) &&!TextUtils.isEmpty(user_job) &&!TextUtils.isEmpty(user_mobile) &&mainImageURI != null) {
+                if (!TextUtils.isEmpty(user_name) && !TextUtils.isEmpty(user_adress) && !TextUtils.isEmpty(user_job) && !TextUtils.isEmpty(user_mobile) && mainImageURI != null) {
 
                     setupProgress.setVisibility(View.VISIBLE);
 
@@ -180,7 +280,7 @@ public class SetupActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
 
                                 if (task.isSuccessful()) {
-                                    storeFirestore(task, user_name,user_adress,user_job,user_mobile);
+                                    storeFirestore(task, user_name, user_adress, user_job, user_mobile);
 
                                 } else {
 
@@ -195,7 +295,7 @@ public class SetupActivity extends AppCompatActivity {
 
                     } else {
 
-                        storeFirestore(null, user_name,user_adress,user_job,user_mobile);
+                        storeFirestore(null, user_name, user_adress, user_job, user_mobile);
 
                     }
 
@@ -209,9 +309,9 @@ public class SetupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
-                    if(ContextCompat.checkSelfPermission(SetupActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                    if (ContextCompat.checkSelfPermission(SetupActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
                         Toast.makeText(SetupActivity.this, "Permission Denied", Toast.LENGTH_LONG).show();
                         ActivityCompat.requestPermissions(SetupActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -235,11 +335,11 @@ public class SetupActivity extends AppCompatActivity {
 
     }
 
-    private void storeFirestore(@NonNull Task<UploadTask.TaskSnapshot> task, String user_name,String user_adress,String user_job,String user_mobile) {
+    private void storeFirestore(@NonNull Task<UploadTask.TaskSnapshot> task, String user_name, String user_adress, String user_job, String user_mobile) {
 
         Uri download_uri;
 
-        if(task != null) {
+        if (task != null) {
 
             download_uri = task.getResult().getDownloadUrl();
 
@@ -261,7 +361,7 @@ public class SetupActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
 
                     Toast.makeText(SetupActivity.this, "The user Settings are updated.", Toast.LENGTH_LONG).show();
                     Intent mainIntent = new Intent(SetupActivity.this, MainActivity.class);
@@ -313,4 +413,46 @@ public class SetupActivity extends AppCompatActivity {
         }
 
     }
+
+
+    public void loadMorePost() {
+
+        if (firebaseAuth.getCurrentUser() != null) {
+
+            Query nextQuery = firebaseFirestore.collection("Posts")
+                    .orderBy("timestamp", Query.Direction.DESCENDING)
+                    .startAfter(lastVisible)
+                    .limit(3);
+
+            nextQuery.addSnapshotListener(this, new EventListener<QuerySnapshot>() {
+                @Override
+                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+
+                    if (!documentSnapshots.isEmpty()) {
+
+                        lastVisible = documentSnapshots.getDocuments().get(documentSnapshots.size() - 1);
+                        for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
+
+                            if (doc.getType() == DocumentChange.Type.ADDED) {
+
+                                String blogPostId = doc.getDocument().getId();
+                                BlogPost blogPost = doc.getDocument().toObject(BlogPost.class).withId(blogPostId);
+                                if (user_id.equals(blogPost.getUser_id())) {
+
+                                    blog_list.add(blogPost);
+                                }
+                                blogRecyclerAdapter.notifyDataSetChanged();
+                            }
+
+                        }
+                    }
+
+                }
+            });
+
+        }
+
+    }
+
+
 }

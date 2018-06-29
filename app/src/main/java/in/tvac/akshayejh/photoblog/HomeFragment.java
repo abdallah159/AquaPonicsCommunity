@@ -39,10 +39,10 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView blog_list_view;
     private List<BlogPost> blog_list;
-
+    private BlogRecyclerAdapter blogRecyclerAdapter;
     private FirebaseFirestore firebaseFirestore;
     private FirebaseAuth firebaseAuth;
-    private BlogRecyclerAdapter blogRecyclerAdapter;
+
 
     private DocumentSnapshot lastVisible;
     private Boolean isFirstPageFirstLoad = true;
