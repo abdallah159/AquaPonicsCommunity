@@ -40,7 +40,8 @@
         </activity>
         <activity android:name=".AboutActivity" />
         <activity android:name=".AlarmActivity" />
-        <activity android:name=".TempratureActivity"></activity>
+        <activity android:name=".TempratureActivity" />
+        <activity android:name=".FullScreenImageActivity"></activity>
     </application>
 
 </manifest>
