@@ -39,26 +39,26 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
     public List<BlogPost> blog_list;
     public Context context;
 
-    String userName ;
-    String userImage ;
+    String userName;
+    String userImage;
 
-    long millisecond ;
-    String dateString ;
-    String user_id ;
+    long millisecond;
+    String dateString;
+    String user_id;
 
 
-    TextView userNameDialog , dateDialog , descDialog , commentsDialog , likesDialog;
-    CircleImageView userImageDialog ;
+    TextView userNameDialog, dateDialog, descDialog, commentsDialog, likesDialog;
+    CircleImageView userImageDialog;
 
-    ImageView blogPostImageDialog ;
+    ImageView blogPostImageDialog;
 
 
     private FirebaseFirestore firebaseFirestore;
     private FirebaseAuth firebaseAuth;
 
-    Dialog myDialog ;
+    Dialog myDialog;
 
-    public NotificationRecyclerAdapter(List<BlogPost> blog_list){
+    public NotificationRecyclerAdapter(List<BlogPost> blog_list) {
 
         this.blog_list = blog_list;
 
@@ -86,16 +86,16 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
         String image_url = blog_list.get(position).getImage_url();
         String thumbUri = blog_list.get(position).getImage_thumb();
 
-         user_id = blog_list.get(position).getUser_id();
+        user_id = blog_list.get(position).getUser_id();
         //User Data will be retrieved here...
         firebaseFirestore.collection("Users").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
 
-                     userName = task.getResult().getString("name");
-                     userImage = task.getResult().getString("image");
+                    userName = task.getResult().getString("name");
+                    userImage = task.getResult().getString("image");
 
                     holder.setUserData(userName, userImage);
 
@@ -114,19 +114,15 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
         myDialog.setContentView(R.layout.notification_content);
 
 
-
-
-
         try {
-             millisecond = blog_list.get(position).getTimestamp().getTime();
-             dateString = DateFormat.format("MM/dd/yyyy", new Date(millisecond)).toString();
+            millisecond = blog_list.get(position).getTimestamp().getTime();
+            dateString = DateFormat.format("MM/dd/yyyy", new Date(millisecond)).toString();
             holder.setTime(dateString);
         } catch (Exception e) {
 
             Toast.makeText(context, "Exception : " + e.getMessage(), Toast.LENGTH_SHORT).show();
 
         }
-
 
 
         userNameDialog = myDialog.findViewById(R.id.blog_user_name);
@@ -139,9 +135,6 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
         blogPostImageDialog = myDialog.findViewById(R.id.blog_image);
 
 
-
-
-
         holder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -150,7 +143,7 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
 
                             userName = task.getResult().getString("name");
                             userImage = task.getResult().getString("image");
@@ -174,12 +167,58 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
                 Glide.with(context).applyDefaultRequestOptions(placeholderOption).load(blog_list.get(position).getImage_url()).into(blogPostImageDialog);
 
 
+                descDialog = myDialog.findViewById(R.id.blog_desc);
+                descDialog.setText(blog_list.get(position).getDesc().toString());
+
+
+                firebaseFirestore.collection("Posts/" + blogPostId + "/Likes").addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+
+                        if (!documentSnapshots.isEmpty()) {
+
+                            int count = documentSnapshots.size();
+                            likesDialog = myDialog.findViewById(R.id.blog_like_count);
+                            likesDialog.setText(count + " Likes");
+
+
+                        } else {
+                            likesDialog = myDialog.findViewById(R.id.blog_like_count);
+                            likesDialog.setText(0 + " Likes");
+
+
+                        }
+
+                    }
+                });
+
+                //Get Comments Count
+                firebaseFirestore.collection("Posts/" + blogPostId + "/Comments").addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+
+                        if (!documentSnapshots.isEmpty()) {
+
+                            int commentsCount = documentSnapshots.size();
+
+                            commentsDialog = myDialog.findViewById(R.id.blog_comment_count);
+
+                            commentsDialog.setText(commentsCount + " Comments");
+                        } else {
+
+                            commentsDialog = myDialog.findViewById(R.id.blog_comment_count);
+
+                            commentsDialog.setText(0 + " Comments");
+                        }
+
+                    }
+                });
+
 
                 myDialog.show();
 
             }
         });
-
 
 
     }
@@ -201,7 +240,7 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
         private CircleImageView blogUserImage;
 
 
-        private ConstraintLayout item ;
+        private ConstraintLayout item;
 
 
         public ViewHolder(View itemView) {
@@ -214,15 +253,13 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
         }
 
 
-
         public void setTime(String date) {
 
             blogDate = mView.findViewById(R.id.blog_date);
             blogDate.setText(date);
-
         }
 
-        public void setUserData(String name, String image){
+        public void setUserData(String name, String image) {
 
             blogUserImage = mView.findViewById(R.id.blog_user_image);
             blogUserName = mView.findViewById(R.id.blog_user_name);
@@ -237,6 +274,7 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
             Glide.with(context).applyDefaultRequestOptions(placeholderOption).load(image).into(userImageDialog);
 
         }
+
 
     }
 

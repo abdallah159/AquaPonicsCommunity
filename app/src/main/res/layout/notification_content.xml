@@ -59,6 +59,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/blog_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
