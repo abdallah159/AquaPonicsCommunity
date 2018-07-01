@@ -139,6 +139,9 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
             @Override
             public void onClick(View view) {
 
+                user_id = blog_list.get(position).getUser_id();
+
+
                 firebaseFirestore.collection("Users").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -149,6 +152,13 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
                             userImage = task.getResult().getString("image");
 
                             holder.setUserData(userName, userImage);
+
+                            userNameDialog.setText(userName);
+
+                            RequestOptions placeholderOption = new RequestOptions();
+                            placeholderOption.placeholder(R.drawable.profile_placeholder);
+
+                            Glide.with(context).applyDefaultRequestOptions(placeholderOption).load(userImage).into(userImageDialog);
 
 
                         } else {
@@ -221,6 +231,8 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
         });
 
 
+
+
     }
 
 
@@ -264,14 +276,13 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
             blogUserImage = mView.findViewById(R.id.blog_user_image);
             blogUserName = mView.findViewById(R.id.blog_user_name);
 
+
             blogUserName.setText(name);
-            userNameDialog.setText(name);
 
             RequestOptions placeholderOption = new RequestOptions();
             placeholderOption.placeholder(R.drawable.profile_placeholder);
 
             Glide.with(context).applyDefaultRequestOptions(placeholderOption).load(image).into(blogUserImage);
-            Glide.with(context).applyDefaultRequestOptions(placeholderOption).load(image).into(userImageDialog);
 
         }
 

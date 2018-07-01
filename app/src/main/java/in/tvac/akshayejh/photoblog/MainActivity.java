@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         cityNameTV = findViewById(R.id.location);
         if (mGPS.canGetLocation) {
             mGPS.getLocation();
-            Toast.makeText(this, ""+mGPS.getLatitude()+mGPS.getLongitude(), Toast.LENGTH_SHORT).show();
+         //   Toast.makeText(this, ""+mGPS.getLatitude()+mGPS.getLongitude(), Toast.LENGTH_SHORT).show();
          //   cityNameTV.setText("Lat" + mGPS.getLatitude() + "Lon" + mGPS.getLongitude());
         } else {
             cityNameTV.setText("Unabletofind");
