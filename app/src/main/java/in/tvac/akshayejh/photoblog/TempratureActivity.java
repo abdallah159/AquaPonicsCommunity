@@ -14,6 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 
 public class TempratureActivity extends AppCompatActivity {
@@ -50,10 +51,12 @@ public class TempratureActivity extends AppCompatActivity {
 
                 DataModel value ;
                 ArrayList<DataModel> dataModels = new ArrayList<>();
-
+                DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
                 for(DataSnapshot d : dataSnapshot.getChildren()){
                     String[] data = d.child("TEMP").getValue().toString().split(" ");
-                    value = new DataModel(data[0],data[1]+data[2]);
+                    value = new DataModel(data[0],data[1]);
+                    String[] time = data[2].split("\\.");
+                    Toast.makeText(TempratureActivity.this, ""+time[0], Toast.LENGTH_SHORT).show();
                     dataModels.add(value);
                 }
 
