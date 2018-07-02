@@ -54,6 +54,7 @@ public class TempratureActivity extends AppCompatActivity {
                 DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
                 for(DataSnapshot d : dataSnapshot.getChildren()){
                     String[] data = d.child("TEMP").getValue().toString().split(" ");
+//                    Last edit of the data activity
                     value = new DataModel(data[0],data[1]);
                     String[] time = data[2].split("\\.");
                     Toast.makeText(TempratureActivity.this, ""+time[0], Toast.LENGTH_SHORT).show();
