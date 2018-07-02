@@ -54,4 +54,15 @@
 
     <string name="open_weather_maps_app_id">AIzaSyC_cbq4YL9tI_5vMLXvjk4OuU3sKszj9z4</string>
     <string name="place_not_found">Sorry, no weather data found.</string>
+
+
+
+
+
+    <string name="notification_add_to_cart_button">Like</string>
+    <string name="group_name">Group 1</string>
+    <string name="notifications_admin_channel_name">Global channel</string>
+    <string name="notifications_admin_channel_description">Notifications sent from the app admin</string>
+
+
 </resources>

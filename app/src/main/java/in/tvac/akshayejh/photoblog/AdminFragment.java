@@ -7,13 +7,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.text.DateFormat;
+import java.util.ArrayList;
 
 
 public class AdminFragment extends Fragment {
 
 
     Button setAlarmBTN , toTempretureTable ;
+    TextView temp ;
+
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("server-POST");
+
 
 
 
@@ -24,6 +39,9 @@ public class AdminFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_admin,
                 container, false);
+
+
+        temp = view.findViewById(R.id.tempTextView);
 
 
         setAlarmBTN = view.findViewById(R.id.set_alarm_btn);
@@ -44,6 +62,35 @@ public class AdminFragment extends Fragment {
 
                 Intent alarmIntent = new Intent(getContext(),TempratureActivity.class);
                 startActivity(alarmIntent);
+            }
+        });
+
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+
+                DataModel value ;
+                ArrayList<DataModel> dataModels = new ArrayList<>();
+                for(DataSnapshot d : dataSnapshot.getChildren()){
+                    String[] data = d.child("TEMP").getValue().toString().split(" ");
+//                    Last edit of the data activity
+                    value = new DataModel(data[0],null);
+//                    Toast.makeText(TempratureActivity.this, ""+time[0], Toast.LENGTH_SHORT).show();
+                    dataModels.add(value);
+                }
+
+
+                temp.setText(dataModels.get(dataModels.size()-1).getTEMP().toString()+"C");
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
             }
         });
 

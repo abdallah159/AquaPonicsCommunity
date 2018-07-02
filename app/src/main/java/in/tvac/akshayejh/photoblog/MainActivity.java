@@ -1,7 +1,11 @@
 package in.tvac.akshayejh.photoblog;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.nfc.Tag;
 import android.support.annotation.NonNull;
@@ -25,15 +29,33 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.storage.StorageReference;
+
+import okhttp3.OkHttpClient;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import in.tvac.akshayejh.photoblog.utilities.GPSTracker;
@@ -49,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private String current_user_id;
 
     private TextView profileName;
+
+    int min, max;
 
     private CircleImageView profileImage;
 
@@ -66,6 +90,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     String IS_ADMIN;
 
+    public static boolean isAppRunning;
+    JSONObject message;
+    JSONObject messageInfo;
+
+    private final String PUSH_URL = "https://fcm.googleapis.com/fcm/send";
+
+    private String USER_TOKEN;
+
+
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("server-POST");
+
 
     DrawerLayout drawer;
 
@@ -77,23 +113,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*
-         * GPS Tracker I hope that it will run
-         * */
-//
-//         GPSTracker mGPS = new GPSTracker(this);
-//
-//        cityNameTV = findViewById(R.id.location);
-//        if (mGPS.canGetLocation) {
-//            mGPS.getLocation();
-//         //   Toast.makeText(this, ""+mGPS.getLatitude()+mGPS.getLongitude(), Toast.LENGTH_SHORT).show();
-//         //   cityNameTV.setText("Lat" + mGPS.getLatitude() + "Lon" + mGPS.getLongitude());
-//        } else {
-//            cityNameTV.setText("Unabletofind");
-//        }
 
         ShredRef = this.getSharedPreferences("CurrentUser", this.MODE_PRIVATE);
         IS_ADMIN = ShredRef.getString("isAdmin", "false");
+
+
+
+
+        Toast.makeText(this, ""+min+max, Toast.LENGTH_SHORT).show();
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
@@ -106,6 +133,113 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        String channelId = "1";
+        String channel2 = "2";
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel notificationChannel = new NotificationChannel(channelId,
+                    "Channel 1", NotificationManager.IMPORTANCE_HIGH);
+
+            notificationChannel.setDescription("This is BNT");
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.enableVibration(true);
+            notificationChannel.setShowBadge(true);
+            notificationManager.createNotificationChannel(notificationChannel);
+
+        }
+
+
+        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+        USER_TOKEN = refreshedToken;
+        Log.e("+++++++", "Refreshed token: " + refreshedToken);
+
+        message = new JSONObject();
+        messageInfo = new JSONObject();
+
+        try {
+            messageInfo.put("title", "Temprature Alarm!");
+            messageInfo.put("message", "Water Tempreture is Up Normal!!");
+            messageInfo.put("image-url", "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Achtung.svg/180px-Achtung.svg.png");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            message.put("to", USER_TOKEN);
+            message.put("data", messageInfo);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        AndroidNetworking.initialize(getApplicationContext());
+
+        OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+                .addNetworkInterceptor(new StethoInterceptor()).build();
+
+        AndroidNetworking.initialize(getApplicationContext(), okHttpClient);
+
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+
+                DataModel value;
+                ArrayList<DataModel> dataModels = new ArrayList<>();
+                for (DataSnapshot d : dataSnapshot.getChildren()) {
+                    String[] data = d.child("TEMP").getValue().toString().split(" ");
+//                    Last edit of the data activity
+                    value = new DataModel(data[0], null);
+//                    Toast.makeText(TempratureActivity.this, ""+time[0], Toast.LENGTH_SHORT).show();
+                    dataModels.add(value);
+                }
+
+                min = Integer.parseInt(ShredRef.getString("Min", "24"));
+                max = Integer.parseInt(ShredRef.getString("Max", "27"));
+                
+                if (Float.parseFloat(dataModels.get(dataModels.size() - 1).getTEMP()) >= max || Float.parseFloat(dataModels.get(dataModels.size() - 1).getTEMP()) <= min) {
+                    //Push Notification from here..
+                    AndroidNetworking.post(PUSH_URL)
+                            .addJSONObjectBody(message)
+                            .addHeaders("Authorization", "key=AAAAOTvZvqw:APA91bF0CYY19WBxUwOaePlNsFzGf3wjjxhlM8D-EjqWQXkFIiLmXSwFgLUPd8XQt1uTxCDGPbPC8Q-GfuLFSlkEvHTWLk1hYnBrCgfgHSJOZ5Ah8T2rId_0VAi5WHD9FKJav0XwNiBl")
+                            .addHeaders("Content-Type", "application/json")
+                            .setPriority(Priority.MEDIUM)
+                            .build()
+                            .getAsJSONObject(new JSONObjectRequestListener() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    try {
+                                        Toast.makeText(MainActivity.this, "l:" + response.getString("success").toString(), Toast.LENGTH_SHORT).show();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                @Override
+                                public void onError(ANError anError) {
+
+                                }
+                            });
+
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+            }
+        });
+
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -143,16 +277,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     case R.id.usesystem:
                         drawer.closeDrawers();
-                        if(IS_ADMIN.equals("true")){
+                        if (IS_ADMIN.equals("true")) {
                             addPostBtn.setVisibility(View.GONE);
                             replaceFragment(adminFragment, currentFragment);
                             return true;
-                        }else {
+                        } else {
                             addPostBtn.setVisibility(View.GONE);
                             replaceFragment(accountFragment, currentFragment);
                             return true;
                         }
-
 
 
                     case R.id.about:
@@ -493,4 +626,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        isAppRunning = false;
+    }
+
+
 }

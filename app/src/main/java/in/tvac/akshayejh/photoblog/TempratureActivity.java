@@ -1,5 +1,6 @@
 package in.tvac.akshayejh.photoblog;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,6 +29,8 @@ public class TempratureActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temprature);
 
+        final ProgressDialog progressDialog ;
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Temprature Table");
@@ -38,9 +41,9 @@ public class TempratureActivity extends AppCompatActivity {
         mLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(mLayoutManager);
 
-
-
-
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading Data..");
+        progressDialog.show();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("server-POST");
 
@@ -67,6 +70,7 @@ public class TempratureActivity extends AppCompatActivity {
                 tempratureAdapter = new TempratureAdapter(dataModels,R.layout.temp_row,TempratureActivity.this);
 //                recyclerView.smoothScrollToPosition(dataModels.size());
                 recyclerView.setAdapter(tempratureAdapter);
+                progressDialog.dismiss();
 
 
                 }
