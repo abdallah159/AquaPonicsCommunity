@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_gravity="center"
-        android:src="@drawable/aquaponic_1" />
+        android:src="@drawable/fish" />
 
 
 </LinearLayout>

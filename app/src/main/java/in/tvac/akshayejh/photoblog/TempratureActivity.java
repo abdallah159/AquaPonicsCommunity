@@ -33,7 +33,10 @@ public class TempratureActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Temprature Table");
 
         recyclerView = findViewById(R.id.temp_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(mLayoutManager);
 
 
 
@@ -55,13 +58,14 @@ public class TempratureActivity extends AppCompatActivity {
                 for(DataSnapshot d : dataSnapshot.getChildren()){
                     String[] data = d.child("TEMP").getValue().toString().split(" ");
 //                    Last edit of the data activity
-                    value = new DataModel(data[0],data[1]);
                     String[] time = data[2].split("\\.");
-                    Toast.makeText(TempratureActivity.this, ""+time[0], Toast.LENGTH_SHORT).show();
+                    value = new DataModel(data[0],"day: "+data[1]+"\n"+"time: "+time[0]);
+//                    Toast.makeText(TempratureActivity.this, ""+time[0], Toast.LENGTH_SHORT).show();
                     dataModels.add(value);
                 }
 
                 tempratureAdapter = new TempratureAdapter(dataModels,R.layout.temp_row,TempratureActivity.this);
+//                recyclerView.smoothScrollToPosition(dataModels.size());
                 recyclerView.setAdapter(tempratureAdapter);
 
 

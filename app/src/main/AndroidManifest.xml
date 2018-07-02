@@ -35,7 +35,8 @@
         <activity
             android:name=".CommentsActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

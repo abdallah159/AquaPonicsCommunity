@@ -11,8 +11,8 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("About Us");
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setTitle("About Us");
     }
 }

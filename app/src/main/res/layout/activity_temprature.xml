@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".TempratureActivity">
+    tools:context=".TempratureActivity"
+    android:background="@color/backGroundColor">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/main_toolbar"
@@ -24,14 +25,15 @@
         android:weightSum="10"
         android:gravity="center"
         android:layout_marginBottom="4dp"
-        android:background="@android:color/holo_orange_light">
+        android:background="@color/tempratureColor">
 
 
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
             android:layout_weight="1"
-            android:src="@drawable/calendar"/>
+            android:src="@drawable/day"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -39,21 +41,23 @@
             android:text="Day"
             android:textStyle="bold"
             android:gravity="left"
-            android:textColor="@color/colorBlack"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="20sp"/>
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="25dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:src="@drawable/thermometer"/>
+            android:src="@drawable/temp"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:gravity="left"
+            android:layout_marginLeft="5dp"
             android:text="Temp"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="20sp"
             android:textStyle="bold" />
 

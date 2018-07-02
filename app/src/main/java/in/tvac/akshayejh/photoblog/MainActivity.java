@@ -35,6 +35,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.StorageReference;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import in.tvac.akshayejh.photoblog.utilities.GPSTracker;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private TextView profileName;
 
-    private ImageView profileImage;
+    private CircleImageView profileImage;
 
     private FloatingActionButton addPostBtn;
 
@@ -79,17 +80,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         /*
          * GPS Tracker I hope that it will run
          * */
-
-         GPSTracker mGPS = new GPSTracker(this);
-
-        cityNameTV = findViewById(R.id.location);
-        if (mGPS.canGetLocation) {
-            mGPS.getLocation();
-         //   Toast.makeText(this, ""+mGPS.getLatitude()+mGPS.getLongitude(), Toast.LENGTH_SHORT).show();
-         //   cityNameTV.setText("Lat" + mGPS.getLatitude() + "Lon" + mGPS.getLongitude());
-        } else {
-            cityNameTV.setText("Unabletofind");
-        }
+//
+//         GPSTracker mGPS = new GPSTracker(this);
+//
+//        cityNameTV = findViewById(R.id.location);
+//        if (mGPS.canGetLocation) {
+//            mGPS.getLocation();
+//         //   Toast.makeText(this, ""+mGPS.getLatitude()+mGPS.getLongitude(), Toast.LENGTH_SHORT).show();
+//         //   cityNameTV.setText("Lat" + mGPS.getLatitude() + "Lon" + mGPS.getLongitude());
+//        } else {
+//            cityNameTV.setText("Unabletofind");
+//        }
 
         ShredRef = this.getSharedPreferences("CurrentUser", this.MODE_PRIVATE);
         IS_ADMIN = ShredRef.getString("isAdmin", "false");
