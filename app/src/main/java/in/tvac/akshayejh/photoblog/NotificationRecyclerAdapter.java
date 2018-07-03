@@ -120,7 +120,7 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
             holder.setTime(dateString);
         } catch (Exception e) {
 
-            Toast.makeText(context, "Exception : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(context, "Exception : " + e.getMessage(), Toast.LENGTH_SHORT).show();
 
         }
 

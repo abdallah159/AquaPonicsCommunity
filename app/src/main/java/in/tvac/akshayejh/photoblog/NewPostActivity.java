@@ -104,6 +104,8 @@ public class NewPostActivity extends AppCompatActivity {
 
                     newPostProgress.setVisibility(View.VISIBLE);
 
+                    newPostBtn.setClickable(false);
+
                     final String randomName = UUID.randomUUID().toString();
 
                     // PHOTO UPLOAD

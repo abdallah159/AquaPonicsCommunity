@@ -91,7 +91,7 @@ public class SetupActivity extends AppCompatActivity {
 
         Toolbar setupToolbar = findViewById(R.id.setupToolbar);
         setSupportActionBar(setupToolbar);
-        getSupportActionBar().setTitle("Account Setup");
+        getSupportActionBar().setTitle("Profile");
 
 
         blog_list = new ArrayList<>();

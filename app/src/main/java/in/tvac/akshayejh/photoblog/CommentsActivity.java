@@ -100,9 +100,14 @@ public class CommentsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 String comment_message = comment_field.getText().toString();
 
 
+                if (comment_message.isEmpty()) {
+                    comment_field.setError("Enter Comment Please..");
+
+                } else {
                     Map<String, Object> commentsMap = new HashMap<>();
                     commentsMap.put("message", comment_message);
                     commentsMap.put("user_id", current_user_id);
@@ -112,7 +117,7 @@ public class CommentsActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<DocumentReference> task) {
 
-                            if(!task.isSuccessful()){
+                            if (!task.isSuccessful()) {
 
                                 Toast.makeText(CommentsActivity.this, "Error Posting Comment : " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
@@ -125,6 +130,7 @@ public class CommentsActivity extends AppCompatActivity {
                         }
                     });
 
+                }
             }
         });
 

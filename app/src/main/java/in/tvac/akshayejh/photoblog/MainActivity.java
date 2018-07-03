@@ -120,12 +120,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-        Toast.makeText(this, ""+min+max, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, ""+min+max, Toast.LENGTH_SHORT).show();
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Photo Blog");
+        getSupportActionBar().setTitle("AquaPonics");
 
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -135,110 +135,116 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
 
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        String channelId = "1";
-        String channel2 = "2";
+        if(IS_ADMIN.equals("true")) {
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            NotificationChannel notificationChannel = new NotificationChannel(channelId,
-                    "Channel 1", NotificationManager.IMPORTANCE_HIGH);
+            String channelId = "1";
+            String channel2 = "2";
 
-            notificationChannel.setDescription("This is BNT");
-            notificationChannel.setLightColor(Color.RED);
-            notificationChannel.enableVibration(true);
-            notificationChannel.setShowBadge(true);
-            notificationManager.createNotificationChannel(notificationChannel);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                NotificationChannel notificationChannel = new NotificationChannel(channelId,
+                        "Channel 1", NotificationManager.IMPORTANCE_HIGH);
 
-        }
+                notificationChannel.setDescription("This is BNT");
+                notificationChannel.setLightColor(Color.RED);
+                notificationChannel.enableVibration(true);
+                notificationChannel.setShowBadge(true);
+                notificationManager.createNotificationChannel(notificationChannel);
 
-
-        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-        USER_TOKEN = refreshedToken;
-        Log.e("+++++++", "Refreshed token: " + refreshedToken);
-
-        message = new JSONObject();
-        messageInfo = new JSONObject();
-
-        try {
-            messageInfo.put("title", "Temprature Alarm!");
-            messageInfo.put("message", "Water Tempreture is Up Normal!!");
-            messageInfo.put("image-url", "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Achtung.svg/180px-Achtung.svg.png");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            message.put("to", USER_TOKEN);
-            message.put("data", messageInfo);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            }
 
 
-        AndroidNetworking.initialize(getApplicationContext());
+            String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+            USER_TOKEN = refreshedToken;
+            Log.e("+++++++", "Refreshed token: " + refreshedToken);
 
-        OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
-                .addNetworkInterceptor(new StethoInterceptor()).build();
+            message = new JSONObject();
+            messageInfo = new JSONObject();
 
-        AndroidNetworking.initialize(getApplicationContext(), okHttpClient);
+            try {
+                messageInfo.put("title", "Temprature Alarm!");
+                messageInfo.put("message", "Water Tempreture is Up Normal!!");
+                messageInfo.put("image-url", "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Achtung.svg/180px-Achtung.svg.png");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                message.put("to", USER_TOKEN);
+                message.put("data", messageInfo);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
 
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
+            AndroidNetworking.initialize(getApplicationContext());
 
-                DataModel value;
-                ArrayList<DataModel> dataModels = new ArrayList<>();
-                for (DataSnapshot d : dataSnapshot.getChildren()) {
-                    String[] data = d.child("TEMP").getValue().toString().split(" ");
+            OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+                    .addNetworkInterceptor(new StethoInterceptor()).build();
+
+            AndroidNetworking.initialize(getApplicationContext(), okHttpClient);
+
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+
+                    DataModel value;
+                    ArrayList<DataModel> dataModels = new ArrayList<>();
+                    for (DataSnapshot d : dataSnapshot.getChildren()) {
+                        String[] data = d.child("TEMP").getValue().toString().split(" ");
 //                    Last edit of the data activity
-                    value = new DataModel(data[0], null);
+                        value = new DataModel(data[0], null);
 //                    Toast.makeText(TempratureActivity.this, ""+time[0], Toast.LENGTH_SHORT).show();
-                    dataModels.add(value);
-                }
+                        dataModels.add(value);
+                    }
 
-                min = Integer.parseInt(ShredRef.getString("Min", "24"));
-                max = Integer.parseInt(ShredRef.getString("Max", "27"));
-                
-                if (Float.parseFloat(dataModels.get(dataModels.size() - 1).getTEMP()) >= max || Float.parseFloat(dataModels.get(dataModels.size() - 1).getTEMP()) <= min) {
-                    //Push Notification from here..
-                    AndroidNetworking.post(PUSH_URL)
-                            .addJSONObjectBody(message)
-                            .addHeaders("Authorization", "key=AAAAOTvZvqw:APA91bF0CYY19WBxUwOaePlNsFzGf3wjjxhlM8D-EjqWQXkFIiLmXSwFgLUPd8XQt1uTxCDGPbPC8Q-GfuLFSlkEvHTWLk1hYnBrCgfgHSJOZ5Ah8T2rId_0VAi5WHD9FKJav0XwNiBl")
-                            .addHeaders("Content-Type", "application/json")
-                            .setPriority(Priority.MEDIUM)
-                            .build()
-                            .getAsJSONObject(new JSONObjectRequestListener() {
-                                @Override
-                                public void onResponse(JSONObject response) {
-                                    try {
-                                        Toast.makeText(MainActivity.this, "l:" + response.getString("success").toString(), Toast.LENGTH_SHORT).show();
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
+                    min = Integer.parseInt(ShredRef.getString("Min", "24"));
+                    max = Integer.parseInt(ShredRef.getString("Max", "27"));
+
+                    if (Float.parseFloat(dataModels.get(dataModels.size() - 1).getTEMP()) >= max || Float.parseFloat(dataModels.get(dataModels.size() - 1).getTEMP()) <= min) {
+                        //Push Notification from here..
+                        AndroidNetworking.post(PUSH_URL)
+                                .addJSONObjectBody(message)
+                                .addHeaders("Authorization", "key=AAAAOTvZvqw:APA91bF0CYY19WBxUwOaePlNsFzGf3wjjxhlM8D-EjqWQXkFIiLmXSwFgLUPd8XQt1uTxCDGPbPC8Q-GfuLFSlkEvHTWLk1hYnBrCgfgHSJOZ5Ah8T2rId_0VAi5WHD9FKJav0XwNiBl")
+                                .addHeaders("Content-Type", "application/json")
+                                .setPriority(Priority.MEDIUM)
+                                .build()
+                                .getAsJSONObject(new JSONObjectRequestListener() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        try {
+                                           // Toast.makeText(MainActivity.this, "l:" + response.getString("success").toString(), Toast.LENGTH_SHORT);
+                                            Log.e("++++",response.getString("success").toString());
+
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
                                     }
-                                }
 
-                                @Override
-                                public void onError(ANError anError) {
+                                    @Override
+                                    public void onError(ANError anError) {
 
-                                }
-                            });
+                                    }
+                                });
+
+
+                    }
 
 
                 }
 
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                }
+            });
 
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-            }
-        });
+        }
 
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -348,7 +354,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 } else {
 
                     String error = task.getException().getMessage();
-                    Toast.makeText(MainActivity.this, "(FIRESTORE Retrieve Error) : " + error, Toast.LENGTH_LONG).show();
+                   // Toast.makeText(MainActivity.this, "(FIRESTORE Retrieve Error) : " + error, Toast.LENGTH_LONG).show();
 
                 }
 
@@ -490,7 +496,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     } else {
 
                         String errorMessage = task.getException().getMessage();
-                        Toast.makeText(MainActivity.this, "Error : " + errorMessage, Toast.LENGTH_LONG).show();
+                       // Toast.makeText(MainActivity.this, "Error : " + errorMessage, Toast.LENGTH_LONG).show();
 
 
                     }

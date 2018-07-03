@@ -35,7 +35,6 @@
         android:ems="10"
         android:hint="@string/post_desc_hint"
         android:inputType="textMultiLine"
-        android:maxLength="125"
         android:padding="16dp"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/hintColor"
