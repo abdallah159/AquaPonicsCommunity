@@ -1,35 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:layout_gravity="center"
     android:orientation="vertical"
-    android:tag="accountFragment"
     tools:context=".AccountFragment">
 
-    <!-- TODO: Update blank fragment layout -->
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="20dp"
-        android:text="@string/system_preview"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold"
-        android:textSize="@dimen/aboutTitle" />
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:tag="accountFragment">
+
+        <!-- TODO: Update blank fragment layout -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="@string/system_preview"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/aboutTitle"
+            android:textStyle="bold" />
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:padding="20dp"
-        android:text="sajksdbfvjgvdjbvjkdfjkdsjsdafka;klfgkrferjknnmfdfklsjfoweiofjlkfjklsjfklsdnfklknfjkrnfjkvnfdk.sjvfkjsvrjksnv,fnvjkksdfnsvkdfjkvdfjkvjkvdfknvkfdgvkjfdnvm,dfnjknsdf,.maslhfksdnv,vjklasdhlfvsdkvnsd,fkshdfklfhkl"
-        android:textColor="@color/colorBlack"
-        android:textSize="17sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:padding="5dp"
+            android:text="What about this system ?"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-</FrameLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:text="It is a system that works on monitoring the water system periodically and work to maintain the efficiency and quality of the water system through the periodic monitoring and the immediate of this water system and notify the responsible of this system in the event of anything unusual or change is not appropriate with the nature of the water system by Use some tools and equipment such as temperature sensors, ammonium ratio, acidity and other things."
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:padding="5dp"
+            android:text="What things do not need to be used when using the system and its features?"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:text="When this system is used, it contains a number of advantages, the most important is the lack of the need for human resources in the permanent monitoring of the quality of water and change in the nature of water and when monitoring the human there is a lack of accuracy in estimating the efficiency of the water system and return to this system enables the owner of the farm The control is sustainable throughout the time and in any place away from the fish farm and ensure all the time of efficiency of the water system and works to increase the proportion of fish production from the systems monitored electronically from the control systems for human."
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:padding="5dp"
+            android:text="What tools do you need in your farm to use this system?"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:paddingLeft="10dp"
+            android:text="Source of electric current
+Server for uploading the data and save it for mobile application
+Some of the technical tools we need to program this system
+Mobile application for the farmer owner to monitoring the system and be notified when unusual thing happend
+"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
+
+
+    </LinearLayout>
+</ScrollView>

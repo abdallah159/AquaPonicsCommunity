@@ -40,7 +40,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="system_preview">System Preview</string>
+    <string name="system_preview">AquaPonics Monitoring System Preview</string>
 
 
     <string name="water_temprature">Water Temp Now..</string>
