@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="serif"
         android:gravity="center_horizontal"
-        android:text="@string/version_1_0"
+        android:text="@string/app_version"
         android:textSize="18sp"
         android:textColor="@color/colorPrimary"/>
 
@@ -39,14 +39,14 @@
         android:gravity="center"
         android:padding="20dp"
         android:textColor="@color/colorPrimaryDark"
-        android:text="@string/aquaponics_application_is_a_monotiring_system_for_fish_tanks" />
+        android:text="@string/about_application" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textColor="@color/colorPrimaryDark"
-        android:text="@string/developed_by_a_team_from_faculty_of_computers_and_informatics_suez_canal_university" />
+        android:text="@string/rights" />
 
 
 </LinearLayout>

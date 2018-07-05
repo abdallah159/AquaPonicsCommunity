@@ -5,19 +5,19 @@
     <item
         android:icon="@drawable/ic_person_black_24dp"
         android:id="@+id/profile"
-        android:title="Profile" />
+        android:title="@string/botton_profile_text" />
 
 
    <item
         android:icon="@drawable/ic_home_black_24dp"
         android:id="@+id/home"
-        android:title="@string/home" />
+        android:title="@string/community" />
 
 
     <item
         android:icon="@drawable/notification"
         android:id="@+id/notifiaction"
-        android:title="@string/notifications" />
+        android:title="@string/botton_notification_text" />
 
 
     <item

@@ -28,7 +28,7 @@
                 android:layout_width="335dp"
                 android:layout_height="22dp"
                 android:layout_marginTop="16dp"
-                android:text="@string/has_been_posted_in_aquaponic"
+                android:text="@string/new_post_notification"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="@+id/blog_date"

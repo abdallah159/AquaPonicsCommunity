@@ -1,99 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">أكوابونيكس</string>
-    <string name="pass_hint">كلمة السر ...</string>
-    <string name="email_hint">بريدك الإلكتروني ...</string>
-    <string name="login_logo_desc">صفحة تسجيل الدخول</string>
-    <string name="login_btn_text">تسجيل الدخول الى الحساب</string>
-    <string name="login_reg_btn_text">بحاجة الى حساب جديد؟</string>
-    <string name="action_search_text">بحث</string>
-    <string name="action_setting_text">إعدادات الحساب</string>
-    <string name="action_logout_text">تسجيل الخروج </string>
-    <string name="reg_btn_text">`إنشاء حساب جديد </string>
-    <string name="reg_login_text">هل لديك حساب ؟</string>
-    <string name="reg_pass_text">كلمة السر</string>
-    <string name="reg_confirm_pass_text">تأكيد كلمة السر </string>
+    <string name="action_setting_text">اعدادات الحساب</string>
 
 
-    <string name="setup_name_hint">اسمك.</string>
+    <!--New Ids-->
+
+    <string name="comments">التعليقات :</string>
+    <string name="comment_hint">ضع تعليقك هنا...</string>
+    <string name="likes_count">0 اعجاب</string>
+    <string name="comments_count">0 تعليق</string>
+    <string name="app_version">الاصدار 1.0</string>
+    <string name="about_application">تطبيق اكوابونيكس هو تطبيق يساعد على مراقبة جودة المياة فى خزانات واحواض الاسماك</string>
+    <string name="rights"> تم تطويره من قبل فريق من كلية الحاسبات والمعلومات، جامعة قناة السويس</string>
+    <string name="alarm_limit_title">تحديث درجة التنبيه</string>
+    <string name="temprature_limit_alarm">درجة التنبيه الحالية هي </string>
+    <string name="pass_hint">كلمة السر...</string>
+    <string name="reg_pass_text">كلمة السر...</string>
+    <string name="reg_confirm_pass_text">تأكيد كلمة السر...</string>
+    <string name="email_hint">بريدك الالكتروني...</string>
+    <string name="login_logo_desc">Logo Login Page</string>
+    <string name="login_btn_text">تسجيل الدخول للحساب</string>
+    <string name="login_reg_btn_text">هل تحتاج حساب جديد؟</string>
+    <string name="reg_btn_text">انشاء حساب جديد</string>
+    <string name="reg_login_text">هل لديك حساب؟</string>
+    <string name="new_post_btn">اضافة منشور</string>
+    <string name="post_desc_hint">اضافة وصف</string>
+    <string name="setup_name_hint_text">اسمك</string>
     <string name="setup_save_btn">حفظ اعدادات الحساب</string>
-    <string name="setup_adress_hint_text">عنوانك..</string>
-    <string name="setup_name_hint_text">اسمك...</string>
-    <string name="setup_mobile_hint_text">رقم هاتفك ...</string>
-    <string name="setup_job_hint_text">وظيفتك  ...</string>
-
-
-    <string name="setup_btn_name_text">حفظ إعدادات الحساب</string>
-    <string name="post_desc_hint">اضف وصفا.</string>
-    <string name="new_post_btn_hint">اضف منشورا </string>
-    <string name="bottom_home_text">الصفحه الرئيسية</string>
-    <string name="bottom_notification_text">الإشعارات </string>
-    <string name="bottom_ac_text">حساب</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="has_been_posted_in_aquaponic">هناك منشور جديد فى اكوابونيكس</string>
-
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">الاعدادات</string>
-    <string name="system_preview">معاينة نظام المراقبة </string>
-
-
-    <string name="water_temprature">مشاهدة درجة حرارة الماء الان</string>
-    <string name="ph_value">درجة الحامضية </string>
-    <string name="water_level">مستوى المياه </string>
-    <string name="amonia_value">قيمة الامونيا </string>
+    <string name="setup_adress_hint_text">عنوانك</string>
+    <string name="setup_mobile_hint_text">رقم هاتفك</string>
+    <string name="setup_job_hint_text">وظيفتك</string>
+    <string name="date_temprature_text">التاريخ</string>
+    <string name="temp_temprature_text">الدرجة</string>
+    <string name="loading">تحميل...</string>
+    <string name="water_temprature">درجة الحرارة الآن </string>
     <string name="data_observing">لوحة المراقبة</string>
-    <string name="values_alarm">اضبط قيمة التنبيه </string>
-    <string name="notification">الاشعارات </string>
-
-
-    <string name="open_weather_maps_app_id">AIzaSyC_cbq4YL9tI_5vMLXvjk4OuU3sKszj9z4</string>
-    <string name="place_not_found">Sorry, no weather data found.</string>
-
-
-    <string name="notification_add_to_cart_button">Like</string>
-    <string name="group_name">Group 1</string>
-    <string name="notifications_admin_channel_name">Global channel</string>
-    <string name="notifications_admin_channel_description">Notifications sent from the app admin</string>
-    <string name="version_1_0">الاصدار الاول </string>
-    <string name="aquaponics_application_is_a_monotiring_system_for_fish_tanks">تطبيق اكوابونيكس هو تطبيق يساعد على مراقبة جودة المياة فى خزانات واحواض الاسماك .</string>
-    <string name="developed_by_a_team_from_faculty_of_computers_and_informatics_suez_canal_university">م تطويره من قبل فريق من كلية الحاسبات والمعلوماتية ، جامعة قناة السويس.
-</string>
-    <string name="updating_alarm_limit">تحديث حد التنبيه </string>
-    <string name="temprature_limit_alarm_is_27">إنذار حد درجة الحرارة هو 27</string>
-    <string name="min">حد ادنى </string>
-    <string name="max">حد اقصي </string>
-    <string name="set">تعديل </string>
-    <string name="comments">صفر تعليق</string>
-    <string name="your_comment_here">تعليقك هنا..</string>
-    <string name="date">التاريخ </string>
-    <string name="temp">درجة الحرارة </string>
-    <string name="loading">جار التحميل </string>
-    <string name="_0_likes">0 اعجاب</string>
-    <string name="_0_comments">0 تعليق</string>
-    <string name="what_about_this_system">ماذا عن هذا النظام  ?</string>
-    <string name="it_is_a_system_that_works_on_monitoring_the_water_system_periodically_and_work_to_maintain_the_efficiency_and_quality_of_the_water_system_through_the_periodic_monitoring_and_the_immediate_of_this_water_system_and_notify_the_responsible_of_this_system_in_the_event_of_anything_unusual_or_change_is_not_appropriate_with_the_nature_of_the_water_system_by_use_some_tools_and_equipment_such_as_temperature_sensors_ammonium_ratio_acidity_and_other_things">هو نظام يعمل على مراقبة نظام المياه بشكل دوري ويعمل على الحفاظ على كفاءة ونوعية نظام المياه من خلال المراقبة الدورية لهذا النظام المائي  وإخطار المسئولين عن هذا النظام في حالة حدوث أي شيء غير عادي أو تغيير غير مناسب مع طبيعة نظام المياه عن طريق استخدام بعض الأدوات والمعدات مثل أجهزة استشعار درجة الحرارة ونسبة الأمونيوم والحموضة وغيرها من الأشياء
-.</string>
-    <string name="what_things_do_not_need_to_be_used_when_using_the_system_and_its_features">ما الاشياء التى لا تحتاج الى إستخدامها عندما تقوم باستخدام هذا النظام وما مميزاته ؟</string>
-    <string name="when_this_system_is_used_it_contains_a_number_of_advantages_the_most_important_is_the_lack_of_the_need_for_human_resources_in_the_permanent_monitoring_of_the_quality_of_water_and_change_in_the_nature_of_water_and_when_monitoring_the_human_there_is_a_lack_of_accuracy_in_estimating_the_efficiency_of_the_water_system_and_return_to_this_system_enables_the_owner_of_the_farm_the_control_is_sustainable_throughout_the_time_and_in_any_place_away_from_the_fish_farm_and_ensure_all_the_time_of_efficiency_of_the_water_system_and_works_to_increase_the_proportion_of_fish_production_from_the_systems_monitored_electronically_from_the_control_systems_for_human">عندما يتم استخدام هذا النظام ، فإنه يحتوي على عدد من المزايا ، والأهم هو عدم وجود حاجة للموارد البشرية في المراقبة الدائمة لجودة المياه والتغيير في طبيعة المياه وعند مراقبة الإنسان يكون  هناك نقص من الدقة في تقدير كفاءة نظام المياه والعودة إلى هذا النظام تمكن مالك المزرعةمن المراقبة المستدامة طوال الوقت وفي أي مكان بعيد عن المزرعة السمكية وضمان كفاءة نظام المياه ويساعد على  زيادة نسبة إنتاج الأسماك من الأنظمة التي يتم رصدها إلكترونياً من أنظمة التحكم البشرية
-.</string>
-    <string name="what_tools_do_you_need_in_your_farm_to_use_this_system">ما هي الأدوات التي تحتاجها في مزرعتك لاستخدام هذا النظام؟
-</string>
-    <string name="source_of_electric_current_server_for_uploading_the_data_and_save_it_for_mobile_application_some_of_the_technical_tools_we_need_to_program_this_system_mobile_application_for_the_farmer_owner_to_monitoring_the_system_and_be_notified_when_unusual_thing_happend">مصدر للتيار الكهربى وبعض الادوات المستخدمه فى برمجة هذا النظام ومستقبل للبيانات لكى يتم تخذينها لكى تعرض على تطبيق التليفون المحمول وتليفون محمول لعرض النتائج والقرائات اول باول لمراقبة جودة المياة سرعة المعرفة وقت حدوث اى خلل لتفادى اى خسارة ممكنة .</string>
-    <string name="username">اسم المستخدم </string>
-    <string name="post_date">تاريخ النشر </string>
-    <string name="home">الرئيسية</string>
-    <string name="notifications">الاشعارات</string>
-    <string name="system">لوحة التحكم</string>
+    <string name="values_alarm">اعداد درجة التنبيه</string>
+    <string name="username">اسم المستخدم</string>
+    <string name="new_post_notification">هناك منشور جديد</string>
+    <string name="post_date">تاريخ المنشور</string>
+    <string name="community">الرئيسية</string>
+    <string name="botton_notification_text">الاشعارات</string>
+    <string name="botton_profile_text">الصفحة الشخصية</string>
+    <string name="system">النظام</string>
     <string name="about">اقرأ عن</string>
     <string name="logout">تسجيل الخروج</string>
-    <string name="community">المجتمع</string>
+    <string name="min">الحد الادنى</string>
+    <string name="max">الحد الاقصى</string>
+    <string name="set">ضبط</string>
 
+
+    <string name="bottom_home_text">الرئيسية</string>
+    <string name="bottom_ac_text">الحساب</string>
+
+
+    <string name="what_about_this_system">ماذا عن هذا النظام  ?</string>
+    <string name="it_is_a_system_that_works_on_monitoring_the_water_system_periodically_and_work_to_maintain_the_efficiency_and_quality_of_the_water_system_through_the_periodic_monitoring_and_the_immediate_of_this_water_system_and_notify_the_responsible_of_this_system_in_the_event_of_anything_unusual_or_change_is_not_appropriate_with_the_nature_of_the_water_system_by_use_some_tools_and_equipment_such_as_temperature_sensors_ammonium_ratio_acidity_and_other_things">هو نظام يعمل على مراقبة نظام المياه بشكل دوري ويعمل على الحفاظ على كفاءة ونوعية نظام المياه من خلال المراقبة الدورية لهذا النظام المائي  وإخطار المسئولين عن هذا النظام في حالة حدوث أي شيء غير عادي أو تغيير غير مناسب مع طبيعة نظام المياه عن طريق استخدام بعض الأدوات والمعدات مثل أجهزة استشعار درجة الحرارة ونسبة الأمونيوم والحموضة وغيرها من الأشياء.</string>
+    <string name="what_things_do_not_need_to_be_used_when_using_the_system_and_its_features">ما الاشياء التى لا تحتاج الى إستخدامها عندما تقوم باستخدام هذا النظام وما مميزاته ؟</string>
+    <string name="when_this_system_is_used_it_contains_a_number_of_advantages_the_most_important_is_the_lack_of_the_need_for_human_resources_in_the_permanent_monitoring_of_the_quality_of_water_and_change_in_the_nature_of_water_and_when_monitoring_the_human_there_is_a_lack_of_accuracy_in_estimating_the_efficiency_of_the_water_system_and_return_to_this_system_enables_the_owner_of_the_farm_the_control_is_sustainable_throughout_the_time_and_in_any_place_away_from_the_fish_farm_and_ensure_all_the_time_of_efficiency_of_the_water_system_and_works_to_increase_the_proportion_of_fish_production_from_the_systems_monitored_electronically_from_the_control_systems_for_human">عندما يتم استخدام هذا النظام ، فإنه يحتوي على عدد من المزايا ، والأهم هو عدم وجود حاجة للموارد البشرية في المراقبة الدائمة لجودة المياه والتغيير في طبيعة المياه وعند مراقبة الإنسان يكون  هناك نقص من الدقة في تقدير كفاءة نظام المياه والعودة إلى هذا النظام تمكن مالك المزرعةمن المراقبة المستدامة طوال الوقت وفي أي مكان بعيد عن المزرعة السمكية وضمان كفاءة نظام المياه ويساعد على  زيادة نسبة إنتاج الأسماك من الأنظمة التي يتم رصدها إلكترونياً من أنظمة التحكم البشرية.</string>
+    <string name="what_tools_do_you_need_in_your_farm_to_use_this_system">ما هي الأدوات التي تحتاجها في مزرعتك لاستخدام هذا النظام؟</string>
+    <string name="source_of_electric_current_server_for_uploading_the_data_and_save_it_for_mobile_application_some_of_the_technical_tools_we_need_to_program_this_system_mobile_application_for_the_farmer_owner_to_monitoring_the_system_and_be_notified_when_unusual_thing_happend">مصدر للتيار الكهربى وبعض الادوات المستخدمه فى برمجة هذا النظام ومستقبل للبيانات لكى يتم تخذينها لكى تعرض على تطبيق التليفون المحمول وتليفون محمول لعرض النتائج والقرائات اول باول لمراقبة جودة المياة سرعة المعرفة وقت حدوث اى خلل لتفادى اى خسارة ممكنة .</string>
+    <!--New Ids-->
 
 </resources>
