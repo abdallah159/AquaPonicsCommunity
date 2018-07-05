@@ -3,21 +3,34 @@ package in.tvac.akshayejh.photoblog;
 public class DD {
 
 
-    String TEMP ;
+    Float TEMP ;
+    String Time ;
 
     public DD() {
     }
 
 
-    public DD(String TEMP) {
+
+
+    public DD(Float TEMP, String time) {
         this.TEMP = TEMP;
+        Time = time;
     }
 
-    public String getTEMP() {
+
+    public Float getTEMP() {
         return TEMP;
     }
 
-    public void setTEMP(String TEMP) {
+    public void setTEMP(Float TEMP) {
         this.TEMP = TEMP;
+    }
+
+    public String getTime() {
+        return Time;
+    }
+
+    public void setTime(String time) {
+        Time = time;
     }
 }

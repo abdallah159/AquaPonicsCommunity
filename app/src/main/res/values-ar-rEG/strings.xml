@@ -67,6 +67,11 @@
     <string name="alarm_panel_toolbar">لوحة التنبيه</string>
     <string name="profile_toolbar">الصفحه الشخصيه</string>
     <string name="comments_toolbar_name">التعليقات</string>
+    <string name="graph_activity_toolbar">الرسم البياني</string>
+    <string name="graph_panel_btn">لوحة الرسم البياني</string>
+    <string name="temp_alarm_title">تنبيه درجة الحراره!</string>
+    <string name="temp_alarm_msg">درجة حرارة المياه غير طبيعيه !!</string>
+    <string name="data_monitoring_graph">مراقبة بالرسم البياني</string>
     <!--New Ids-->
 
 </resources>

@@ -3,7 +3,6 @@
     <string name="action_setting_text">Account Settings</string>
 
 
-
     <!--New Ids-->
 
     <string name="comments">Comments :</string>
@@ -65,9 +64,6 @@
     <!--New Ids-->
 
 
-
-
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -79,7 +75,6 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="system_preview">AquaPonics Monitoring System Preview</string>
-
 
 
     <string name="open_weather_maps_app_id">AIzaSyC_cbq4YL9tI_5vMLXvjk4OuU3sKszj9z4</string>
@@ -95,6 +90,11 @@
     <string name="alarm_panel_toolbar">Alarm Panel</string>
     <string name="profile_toolbar">Profile</string>
     <string name="comments_toolbar_name">Comments</string>
+    <string name="graph_activity_toolbar">Graph</string>
+    <string name="graph_panel_btn">Graph Panel</string>
+    <string name="temp_alarm_title">Temprature Alarm!</string>
+    <string name="temp_alarm_msg">Water Tempreture is Up Normal!!</string>
+    <string name="data_monitoring_graph">Data Monitoring Graph</string>
 
 
 </resources>

@@ -50,6 +50,7 @@ dependencies {
     compile 'com.facebook.stetho:stetho-okhttp3:+'
 
 
+    implementation 'com.jjoe64:graphview:4.2.2'
 
 
 }

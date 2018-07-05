@@ -164,8 +164,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             messageInfo = new JSONObject();
 
             try {
-                messageInfo.put("title", "Temprature Alarm!");
-                messageInfo.put("message", "Water Tempreture is Up Normal!!");
+                messageInfo.put("title", getApplicationContext().getResources().getString(R.string.temp_alarm_title));
+                messageInfo.put("message", getApplicationContext().getResources().getString(R.string.temp_alarm_msg));
                 messageInfo.put("image-url", "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Achtung.svg/180px-Achtung.svg.png");
             } catch (JSONException e) {
                 e.printStackTrace();

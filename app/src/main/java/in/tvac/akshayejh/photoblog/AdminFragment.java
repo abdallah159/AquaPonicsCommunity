@@ -26,6 +26,7 @@ public class AdminFragment extends Fragment {
     Button setAlarmBTN , toTempretureTable ;
     TextView temp ;
 
+    Button graphBTN ;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("server-POST");
 
@@ -42,6 +43,18 @@ public class AdminFragment extends Fragment {
 
 
         temp = view.findViewById(R.id.tempTextView);
+
+        graphBTN = view.findViewById(R.id.watch_graph);
+
+        graphBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent graphIntent = new Intent(getContext(),GraphActivity.class);
+                startActivity(graphIntent);
+
+            }
+        });
 
 
         setAlarmBTN = view.findViewById(R.id.set_alarm_btn);
@@ -64,6 +77,8 @@ public class AdminFragment extends Fragment {
                 startActivity(alarmIntent);
             }
         });
+
+
 
 
         myRef.addValueEventListener(new ValueEventListener() {
