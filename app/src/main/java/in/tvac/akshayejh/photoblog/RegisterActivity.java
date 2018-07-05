@@ -63,6 +63,12 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass) & !TextUtils.isEmpty(confirm_pass)){
 
+                    String[] domain = email.split("\\.");
+
+                    if(isValidString(domain[domain.length-1])){
+
+
+
                     if(pass.equals(confirm_pass)){
 
                         reg_progress.setVisibility(View.VISIBLE);
@@ -80,6 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 } else {
 
                                     String errorMessage = task.getException().getMessage();
+                                    reg_email_field.setError(errorMessage);
                                     Toast.makeText(RegisterActivity.this, "Error : " + errorMessage, Toast.LENGTH_LONG).show();
 
                                 }
@@ -91,9 +98,14 @@ public class RegisterActivity extends AppCompatActivity {
 
                     } else {
 
-                        Toast.makeText(RegisterActivity.this, "Confirm Password and Password Field doesn't match.", Toast.LENGTH_LONG).show();
+                        reg_confirm_pass_field.setError("Confirm Password and Password Field doesn't match.");
 
                     }
+                }
+                else {
+                        reg_email_field.setError("Please Enter Valid Email Adress");
+                    }
+
                 }
 
 
@@ -115,6 +127,19 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
     }
+
+
+    public static boolean isValidString(String input) {
+        try {
+            int i = Integer.parseInt(input);
+            return false;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return true;
+        }
+    }
+
+
 
     private void sendToMain() {
 

@@ -260,7 +260,26 @@ public class SetupActivity extends AppCompatActivity {
 //                !TextUtils.isEmpty(user_name) && !TextUtils.isEmpty(user_adress) && !TextUtils.isEmpty(user_job) && !TextUtils.isEmpty(user_mobile) && mainImageURI != null
 
 //                dataValidation();
-                if (isValidString(user_name) && isValidString(user_adress) && isValidMobile(user_mobile) && isValidString(user_job) && mainImageURI != null) {
+
+
+                if (!isValidString(user_name)) {
+                    setupName.setError("Please Enter Valid Name..");
+
+                }else if (!isValidString(user_adress)) {
+                    setupAdress.setError("Please Enter Valid Adress");
+
+                }
+                else if (!isValidMobile(user_mobile)){
+                    setupMobile.setError("Please Enter Valid mobile number..");
+                }
+                else if (!isValidString(user_job)){
+                    setupJob.setError("Please Enter Valid job");
+                }
+                else if (mainImageURI == null){
+                    Toast.makeText(SetupActivity.this, "Insert Your Profile Image", Toast.LENGTH_SHORT).show();
+                }
+                    else
+                 {
 
                     setupProgress.setVisibility(View.VISIBLE);
 
@@ -305,8 +324,9 @@ public class SetupActivity extends AppCompatActivity {
                             }
                         });
 
-                    } else {
 
+                    }
+                    else {
                         storeFirestore(null, user_name, user_adress, user_job, user_mobile);
 
                     }

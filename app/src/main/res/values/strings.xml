@@ -94,6 +94,7 @@
     <string name="temp_table_activity">Temprature Table</string>
     <string name="alarm_panel_toolbar">Alarm Panel</string>
     <string name="profile_toolbar">Profile</string>
+    <string name="comments_toolbar_name">Comments</string>
 
 
 </resources>

@@ -66,6 +66,7 @@
     <string name="temp_table_activity">جدول الدرجات</string>
     <string name="alarm_panel_toolbar">لوحة التنبيه</string>
     <string name="profile_toolbar">الصفحه الشخصيه</string>
+    <string name="comments_toolbar_name">التعليقات</string>
     <!--New Ids-->
 
 </resources>

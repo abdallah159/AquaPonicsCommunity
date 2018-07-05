@@ -8,6 +8,7 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -49,7 +50,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
     private FirebaseFirestore firebaseFirestore;
     private FirebaseAuth firebaseAuth;
 
-    public BlogRecyclerAdapter(List<BlogPost> blog_list){
+    public BlogRecyclerAdapter(List<BlogPost> blog_list) {
 
         this.blog_list = blog_list;
 
@@ -74,19 +75,18 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         final String currentUserId = firebaseAuth.getCurrentUser().getUid();
 
         String desc_data = blog_list.get(position).getDesc();
-        holder.setDescText(desc_data);
 
+        holder.setDescText(desc_data);
         String image_url = blog_list.get(position).getImage_url();
         String thumbUri = blog_list.get(position).getImage_thumb();
         holder.setBlogImage(image_url, thumbUri);
-
         String user_id = blog_list.get(position).getUser_id();
         //User Data will be retrieved here...
         firebaseFirestore.collection("Users").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
 
                     String userName = task.getResult().getString("name");
                     String userImage = task.getResult().getString("image");
@@ -109,16 +109,16 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             holder.setTime(dateString);
         } catch (Exception e) {
 
-           // Toast.makeText(context, "Exception : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            // Toast.makeText(context, "Exception : " + e.getMessage(), Toast.LENGTH_SHORT).show();
 
         }
 
         //Get Likes Count
-        firebaseFirestore.collection("Posts/" + blogPostId + "/Likes").addSnapshotListener( new EventListener<QuerySnapshot>() {
+        firebaseFirestore.collection("Posts/" + blogPostId + "/Likes").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
 
-                if(!documentSnapshots.isEmpty()){
+                if (!documentSnapshots.isEmpty()) {
 
                     int count = documentSnapshots.size();
 
@@ -134,11 +134,11 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         });
 
         //Get Comments Count
-        firebaseFirestore.collection("Posts/" + blogPostId + "/Comments").addSnapshotListener( new EventListener<QuerySnapshot>() {
+        firebaseFirestore.collection("Posts/" + blogPostId + "/Comments").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
 
-                if(!documentSnapshots.isEmpty()){
+                if (!documentSnapshots.isEmpty()) {
 
                     int commentsCount = documentSnapshots.size();
 
@@ -159,7 +159,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             @Override
             public void onEvent(DocumentSnapshot documentSnapshot, FirebaseFirestoreException e) {
 
-                if(documentSnapshot.exists()){
+                if (documentSnapshot.exists()) {
 
                     holder.blogLikeBtn.setImageDrawable(context.getDrawable(R.mipmap.action_like_accent));
 
@@ -181,7 +181,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                        if(!task.getResult().exists()){
+                        if (!task.getResult().exists()) {
 
                             Map<String, Object> likesMap = new HashMap<>();
                             likesMap.put("timestamp", FieldValue.serverTimestamp());
@@ -247,7 +247,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         private ImageView blogImageView;
         private TextView blogDate;
 
-        private TextView blogCommentCount ;
+        private TextView blogCommentCount;
 
         private TextView blogUserName;
         private CircleImageView blogUserImage;
@@ -269,16 +269,32 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
 
         }
 
-        public void setDescText(String descText){
+        public void setDescText(String descText) {
 
             descView = mView.findViewById(R.id.blog_desc);
-            descView.setText(descText);
+
+            if (TextUtils.equals(descText, "null")) {
+                descView.setVisibility(View.GONE);
+
+            } else {
+                descView.setVisibility(View.VISIBLE);
+
+                descView.setText(descText);
+
+            }
 
         }
 
-        public void setBlogImage(String downloadUri, String thumbUri){
+        public void setBlogImage(String downloadUri, String thumbUri) {
 
             blogImageView = mView.findViewById(R.id.blog_image);
+
+            if (TextUtils.equals(downloadUri,"null")) {
+                blogImageView.setVisibility(View.GONE);
+            }
+            else {
+                blogImageView.setVisibility(View.VISIBLE);
+
 
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.placeholder(R.drawable.image_placeholder);
@@ -286,6 +302,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             Glide.with(context).applyDefaultRequestOptions(requestOptions).load(downloadUri).thumbnail(
                     Glide.with(context).load(thumbUri)
             ).into(blogImageView);
+            }
 
         }
 
@@ -296,7 +313,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
 
         }
 
-        public void setUserData(String name, String image){
+        public void setUserData(String name, String image) {
 
             blogUserImage = mView.findViewById(R.id.blog_user_image);
             blogUserName = mView.findViewById(R.id.blog_user_name);
@@ -310,7 +327,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
 
         }
 
-        public void updateLikesCount(int count){
+        public void updateLikesCount(int count) {
 
             blogLikeCount = mView.findViewById(R.id.blog_like_count);
             blogLikeCount.setText(count + context.getResources().getString(R.string.likes_count));

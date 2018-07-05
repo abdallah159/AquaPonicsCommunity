@@ -120,7 +120,7 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
             holder.setTime(dateString);
         } catch (Exception e) {
 
-          //  Toast.makeText(context, "Exception : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            //  Toast.makeText(context, "Exception : " + e.getMessage(), Toast.LENGTH_SHORT).show();
 
         }
 
@@ -171,15 +171,25 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
                 });
 
 
-                RequestOptions placeholderOption = new RequestOptions();
-                placeholderOption.placeholder(R.drawable.profile_placeholder);
+                if (blog_list.get(position).getImage_url().equals("null")) {
+                    blogPostImageDialog.setVisibility(View.GONE);
+                } else {
+                    blogPostImageDialog.setVisibility(View.VISIBLE);
+                    RequestOptions placeholderOption = new RequestOptions();
+                    placeholderOption.placeholder(R.drawable.profile_placeholder);
 
-                Glide.with(context).applyDefaultRequestOptions(placeholderOption).load(blog_list.get(position).getImage_url()).into(blogPostImageDialog);
-
+                    Glide.with(context).applyDefaultRequestOptions(placeholderOption).load(blog_list.get(position).getImage_url()).into(blogPostImageDialog);
+                }
 
                 descDialog = myDialog.findViewById(R.id.blog_desc);
-                descDialog.setText(blog_list.get(position).getDesc().toString());
+                if (blog_list.get(position).getDesc().toString().equals("null")) {
+                    descDialog.setVisibility(View.GONE);
 
+                } else {
+                    descDialog.setVisibility(View.VISIBLE);
+
+                    descDialog.setText(blog_list.get(position).getDesc().toString());
+                }
 
                 firebaseFirestore.collection("Posts/" + blogPostId + "/Likes").addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
@@ -229,8 +239,6 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
 
             }
         });
-
-
 
 
     }
