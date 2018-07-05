@@ -338,12 +338,12 @@ public class ProfilePostRecyclerAdapter extends RecyclerView.Adapter<ProfilePost
         public void updateLikesCount(int count){
 
             blogLikeCount = mView.findViewById(R.id.blog_like_count);
-            blogLikeCount.setText(count + " Likes");
+            blogLikeCount.setText(count +context.getResources().getString( R.string.likes_count));
 
         }
 
         public void updateCommentsCount(int commentsCount) {
-            blogCommentCount.setText(commentsCount + " Comments");
+            blogCommentCount.setText(commentsCount + context.getResources().getString(R.string.comments_count));
         }
     }
 

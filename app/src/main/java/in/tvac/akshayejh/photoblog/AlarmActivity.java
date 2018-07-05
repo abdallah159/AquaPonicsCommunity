@@ -30,7 +30,7 @@ public class AlarmActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Alarm Panel");
+        getSupportActionBar().setTitle(this.getResources().getString(R.string.alarm_panel_toolbar));
 
         tempratureAlarmTV = findViewById(R.id.temprature_alarmTV);
         tempratureAlarmTV.setText("Your current alarm limit is " + 27);

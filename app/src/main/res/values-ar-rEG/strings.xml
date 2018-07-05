@@ -9,8 +9,8 @@
 
     <string name="comments">التعليقات :</string>
     <string name="comment_hint">ضع تعليقك هنا...</string>
-    <string name="likes_count">0 اعجاب</string>
-    <string name="comments_count">0 تعليق</string>
+    <string name="likes_count"> اعجاب</string>
+    <string name="comments_count"> تعليق</string>
     <string name="app_version">الاصدار 1.0</string>
     <string name="about_application">تطبيق اكوابونيكس هو تطبيق يساعد على مراقبة جودة المياة فى خزانات واحواض الاسماك</string>
     <string name="rights"> تم تطويره من قبل فريق من كلية الحاسبات والمعلومات، جامعة قناة السويس</string>
@@ -62,6 +62,10 @@
     <string name="when_this_system_is_used_it_contains_a_number_of_advantages_the_most_important_is_the_lack_of_the_need_for_human_resources_in_the_permanent_monitoring_of_the_quality_of_water_and_change_in_the_nature_of_water_and_when_monitoring_the_human_there_is_a_lack_of_accuracy_in_estimating_the_efficiency_of_the_water_system_and_return_to_this_system_enables_the_owner_of_the_farm_the_control_is_sustainable_throughout_the_time_and_in_any_place_away_from_the_fish_farm_and_ensure_all_the_time_of_efficiency_of_the_water_system_and_works_to_increase_the_proportion_of_fish_production_from_the_systems_monitored_electronically_from_the_control_systems_for_human">عندما يتم استخدام هذا النظام ، فإنه يحتوي على عدد من المزايا ، والأهم هو عدم وجود حاجة للموارد البشرية في المراقبة الدائمة لجودة المياه والتغيير في طبيعة المياه وعند مراقبة الإنسان يكون  هناك نقص من الدقة في تقدير كفاءة نظام المياه والعودة إلى هذا النظام تمكن مالك المزرعةمن المراقبة المستدامة طوال الوقت وفي أي مكان بعيد عن المزرعة السمكية وضمان كفاءة نظام المياه ويساعد على  زيادة نسبة إنتاج الأسماك من الأنظمة التي يتم رصدها إلكترونياً من أنظمة التحكم البشرية.</string>
     <string name="what_tools_do_you_need_in_your_farm_to_use_this_system">ما هي الأدوات التي تحتاجها في مزرعتك لاستخدام هذا النظام؟</string>
     <string name="source_of_electric_current_server_for_uploading_the_data_and_save_it_for_mobile_application_some_of_the_technical_tools_we_need_to_program_this_system_mobile_application_for_the_farmer_owner_to_monitoring_the_system_and_be_notified_when_unusual_thing_happend">مصدر للتيار الكهربى وبعض الادوات المستخدمه فى برمجة هذا النظام ومستقبل للبيانات لكى يتم تخذينها لكى تعرض على تطبيق التليفون المحمول وتليفون محمول لعرض النتائج والقرائات اول باول لمراقبة جودة المياة سرعة المعرفة وقت حدوث اى خلل لتفادى اى خسارة ممكنة .</string>
+    <string name="add_new_post_title">اضافة بوست جديد</string>
+    <string name="temp_table_activity">جدول الدرجات</string>
+    <string name="alarm_panel_toolbar">لوحة التنبيه</string>
+    <string name="profile_toolbar">الصفحه الشخصيه</string>
     <!--New Ids-->
 
 </resources>

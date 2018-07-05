@@ -95,7 +95,7 @@ public class SetupActivity extends AppCompatActivity {
 
         Toolbar setupToolbar = findViewById(R.id.setupToolbar);
         setSupportActionBar(setupToolbar);
-        getSupportActionBar().setTitle("Profile");
+        getSupportActionBar().setTitle(this.getResources().getString(R.string.profile_toolbar));
 
 
         blog_list = new ArrayList<>();

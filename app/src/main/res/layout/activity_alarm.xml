@@ -21,6 +21,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:orientation="vertical">
 
         <ImageView
@@ -57,12 +58,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/min"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textColor="@color/colorPrimaryDark" />
 
         <EditText
             android:id="@+id/temprature_min_alarmET"
-            android:layout_width="70dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="20dp"
@@ -76,12 +77,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/max"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textColor="@color/colorPrimaryDark" />
 
             <EditText
                 android:id="@+id/temprature_max_alarmET"
-                android:layout_width="70dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="20dp"

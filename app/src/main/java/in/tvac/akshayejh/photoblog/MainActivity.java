@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("AquaPonics");
+        getSupportActionBar().setTitle(R.string.app_name);
 
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

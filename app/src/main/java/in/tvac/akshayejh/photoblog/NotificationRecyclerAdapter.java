@@ -189,12 +189,12 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
 
                             int count = documentSnapshots.size();
                             likesDialog = myDialog.findViewById(R.id.blog_like_count);
-                            likesDialog.setText(count + " Likes");
+                            likesDialog.setText(count + context.getResources().getString(R.string.likes_count));
 
 
                         } else {
                             likesDialog = myDialog.findViewById(R.id.blog_like_count);
-                            likesDialog.setText(0 + " Likes");
+                            likesDialog.setText(0 + context.getResources().getString(R.string.likes_count));
 
 
                         }
@@ -213,12 +213,12 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
 
                             commentsDialog = myDialog.findViewById(R.id.blog_comment_count);
 
-                            commentsDialog.setText(commentsCount + " Comments");
+                            commentsDialog.setText(commentsCount + context.getResources().getString(R.string.comments_count));
                         } else {
 
                             commentsDialog = myDialog.findViewById(R.id.blog_comment_count);
 
-                            commentsDialog.setText(0 + " Comments");
+                            commentsDialog.setText(0 + context.getResources().getString(R.string.comments_count));
                         }
 
                     }

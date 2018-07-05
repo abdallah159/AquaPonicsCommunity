@@ -8,8 +8,8 @@
 
     <string name="comments">Comments :</string>
     <string name="comment_hint">Your comment here ...</string>
-    <string name="likes_count">0 Likes</string>
-    <string name="comments_count">0 Comments</string>
+    <string name="likes_count"> Likes</string>
+    <string name="comments_count"> Comments</string>
     <string name="app_version">Version 1.0</string>
     <string name="about_application">AquaPonics application is a monotiring system for fish farmers</string>
     <string name="rights">AquaPonics is developed by team of students, Faculty of Computer and Informatics, Suez Canal Universty</string>
@@ -90,9 +90,10 @@
     <string name="group_name">Group 1</string>
     <string name="notifications_admin_channel_name">Global channel</string>
     <string name="notifications_admin_channel_description">Notifications sent from the app admin</string>
-
-
-
+    <string name="add_new_post_title">Add New Post</string>
+    <string name="temp_table_activity">Temprature Table</string>
+    <string name="alarm_panel_toolbar">Alarm Panel</string>
+    <string name="profile_toolbar">Profile</string>
 
 
 </resources>

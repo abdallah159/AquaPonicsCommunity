@@ -33,7 +33,7 @@ public class TempratureActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Temprature Table");
+        getSupportActionBar().setTitle(this.getResources().getString(R.string.temp_table_activity));
 
         recyclerView = findViewById(R.id.temp_recycler_view);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
