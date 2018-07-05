@@ -313,12 +313,12 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         public void updateLikesCount(int count){
 
             blogLikeCount = mView.findViewById(R.id.blog_like_count);
-            blogLikeCount.setText(count + " Likes");
+            blogLikeCount.setText(count + R.string._0_likes);
 
         }
 
         public void updateCommentsCount(int commentsCount) {
-            blogCommentCount.setText(commentsCount + " Comments");
+            blogCommentCount.setText(commentsCount + R.string._0_comments);
         }
     }
 

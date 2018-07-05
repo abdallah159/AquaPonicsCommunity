@@ -47,6 +47,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import id.zelory.compressor.Compressor;
@@ -60,7 +62,7 @@ public class SetupActivity extends AppCompatActivity {
 
     private RecyclerView blog_list_view;
     private List<BlogPost> blog_list;
-    static  ProfilePostRecyclerAdapter blogRecyclerAdapter;
+    static ProfilePostRecyclerAdapter blogRecyclerAdapter;
 
 
     private String user_id;
@@ -83,6 +85,8 @@ public class SetupActivity extends AppCompatActivity {
 
 
     private String IS_ADMIN = "false";
+
+    private static Pattern usrNamePtrn = Pattern.compile("^[a-z0-9_-]{6,14}$");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -209,13 +213,13 @@ public class SetupActivity extends AppCompatActivity {
                         String mobile = task.getResult().getString("mobile");
                         String job = task.getResult().getString("job");
 
-
                         mainImageURI = Uri.parse(image);
 
                         setupName.setText(name);
                         setupAdress.setText(adress);
                         setupJob.setText(job);
                         setupMobile.setText(mobile);
+
 
                         RequestOptions placeholderRequest = new RequestOptions();
                         placeholderRequest.placeholder(R.drawable.default_image);
@@ -248,7 +252,15 @@ public class SetupActivity extends AppCompatActivity {
                 final String user_job = setupJob.getText().toString();
                 final String user_mobile = setupMobile.getText().toString();
 
-                if (!TextUtils.isEmpty(user_name) && !TextUtils.isEmpty(user_adress) && !TextUtils.isEmpty(user_job) && !TextUtils.isEmpty(user_mobile) && mainImageURI != null) {
+//final String user_name = setupName.getText().toString();
+//                final String user_adress = setupAdress.getText().toString();
+//                final String user_job = setupJob.getText().toString();
+//                final String user_mobile = setupMobile.getText().toString();
+
+//                !TextUtils.isEmpty(user_name) && !TextUtils.isEmpty(user_adress) && !TextUtils.isEmpty(user_job) && !TextUtils.isEmpty(user_mobile) && mainImageURI != null
+
+//                dataValidation();
+                if (isValidString(user_name) && isValidString(user_adress) && isValidMobile(user_mobile) && isValidString(user_job) && mainImageURI != null) {
 
                     setupProgress.setVisibility(View.VISIBLE);
 
@@ -303,6 +315,7 @@ public class SetupActivity extends AppCompatActivity {
 
             }
 
+
         });
 
         setupImage.setOnClickListener(new View.OnClickListener() {
@@ -335,6 +348,80 @@ public class SetupActivity extends AppCompatActivity {
 
     }
 
+    public void dataValidation() {
+
+        //Validation of Data to register
+        if (setupName.getText().toString().length() == 0)
+            setupName.setError("Field cannot be left empty!");
+
+        else if (setupJob.getText().toString().length() == 0)
+            setupJob.setError("Field cannot be left empty!");
+
+        else if (setupMobile.getText().toString().length() == 0)
+            setupMobile.setError("Field cannot be left empty!");
+
+        else if (setupAdress.getText().toString().length() == 0)
+            setupAdress.setError("Field cannot be left empty!");
+
+        else if (!isValidMobile(setupMobile.getText().toString()))
+            setupMobile.setError("Please enter valid mobile number");
+
+        else if (!isValidString(setupAdress.getText().toString()))
+            setupAdress.setError("Please enter valid adress");
+
+        else if (!isValidString(setupJob.getText().toString()))
+            setupJob.setError("Please enter valid jop");
+
+        else if (!isValidString(setupName.getText().toString()))
+            setupName.setError("Please enter valid name");
+
+//        else{
+//            //handle Register here
+//            registerUser = new User(
+//                    useNameET.getText().toString(),
+//                    userEmailET.getText().toString(),
+//                    userPhoneET.getText().toString(),
+//                    userAdressET.getText().toString(),
+//                    userJopET.getText().toString(),
+//                    userPasswordET.getText().toString(),
+//                    "false");
+//
+//            registerUser(registerUser);
+//        }
+//
+//
+    }
+
+
+//    Validation function
+
+    private boolean isValidMobile(String phone) {
+        boolean check = false;
+        if (!Pattern.matches("[a-zA-Z]+", phone)) {
+            if (phone.length() < 6 || phone.length() > 13) {
+                // if(phone.length() != 10) {
+                check = false;
+            } else {
+                check = true;
+            }
+        } else {
+            check = false;
+        }
+        return check;
+    }
+
+
+    public static boolean isValidString(String input) {
+        try {
+            int i = Integer.parseInt(input);
+            return false;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return true;
+        }
+    }
+
+
     private void storeFirestore(@NonNull Task<UploadTask.TaskSnapshot> task, String user_name, String user_adress, String user_job, String user_mobile) {
 
         Uri download_uri;
@@ -348,6 +435,7 @@ public class SetupActivity extends AppCompatActivity {
             download_uri = mainImageURI;
 
         }
+
 
         Map<String, String> userMap = new HashMap<>();
         userMap.put("name", user_name);

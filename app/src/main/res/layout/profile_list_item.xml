@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:text="Username"
+                android:text="@string/username"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/blog_user_image"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Blog Post Date"
+                android:text="@string/post_date"
                 app:layout_constraintStart_toEndOf="@+id/blog_user_image"
                 app:layout_constraintTop_toBottomOf="@+id/blog_user_name" />
 
@@ -83,7 +83,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="Lorem ipsum dolor sit amet, soluta regione urbanitas vis in, qui elit populo ut. "
+                android:text=""
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/blog_image" />
@@ -95,7 +95,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="0 Likes"
+                android:text="@string/_0_likes"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/blog_like_btn"
                 app:layout_constraintTop_toBottomOf="@+id/blog_desc" />
@@ -107,7 +107,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
-                android:text="0 Comments"
+                android:text="@string/comments"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/blog_desc" />

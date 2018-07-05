@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:text="Loading..."
+                android:text="@string/loading"
                 android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/blog_user_image"
@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Loading..."
+                android:text="@string/loading"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintStart_toEndOf="@+id/blog_user_image"
                 app:layout_constraintTop_toBottomOf="@+id/blog_user_name" />

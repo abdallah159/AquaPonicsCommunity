@@ -11,30 +11,30 @@
    <item
         android:icon="@drawable/ic_home_black_24dp"
         android:id="@+id/home"
-        android:title="Home" />
+        android:title="@string/home" />
 
 
     <item
         android:icon="@drawable/notification"
         android:id="@+id/notifiaction"
-        android:title="Notifications" />
+        android:title="@string/notifications" />
 
 
     <item
         android:icon="@drawable/use_system"
         android:id="@+id/usesystem"
-        android:title="System" />
+        android:title="@string/system" />
 
     <item
         android:icon="@drawable/about"
         android:id="@+id/about"
-        android:title="About" />
+        android:title="@string/about" />
 
 
     <item
         android:icon="@drawable/logout"
         android:id="@+id/logout"
-        android:title="Logout" />
+        android:title="@string/logout" />
 
 
 </menu>

@@ -62,7 +62,7 @@ public class TempratureActivity extends AppCompatActivity {
                     String[] data = d.child("TEMP").getValue().toString().split(" ");
 //                    Last edit of the data activity
                     String[] time = data[2].split("\\.");
-                    value = new DataModel(data[0],"day: "+data[1]+"\n"+"time: "+time[0]);
+                    value = new DataModel(data[0]+"ْ C","day: "+data[1]+"\n"+"time: "+time[0]);
 //                    Toast.makeText(TempratureActivity.this, ""+time[0], Toast.LENGTH_SHORT).show();
                     dataModels.add(value);
                 }

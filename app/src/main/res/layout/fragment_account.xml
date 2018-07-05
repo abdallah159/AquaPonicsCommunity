@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             android:padding="5dp"
-            android:text="What about this system ?"
+            android:text="@string/what_about_this_system"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingLeft="10dp"
-            android:text="It is a system that works on monitoring the water system periodically and work to maintain the efficiency and quality of the water system through the periodic monitoring and the immediate of this water system and notify the responsible of this system in the event of anything unusual or change is not appropriate with the nature of the water system by Use some tools and equipment such as temperature sensors, ammonium ratio, acidity and other things."
+            android:text="@string/it_is_a_system_that_works_on_monitoring_the_water_system_periodically_and_work_to_maintain_the_efficiency_and_quality_of_the_water_system_through_the_periodic_monitoring_and_the_immediate_of_this_water_system_and_notify_the_responsible_of_this_system_in_the_event_of_anything_unusual_or_change_is_not_appropriate_with_the_nature_of_the_water_system_by_use_some_tools_and_equipment_such_as_temperature_sensors_ammonium_ratio_acidity_and_other_things"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp" />
 
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             android:padding="5dp"
-            android:text="What things do not need to be used when using the system and its features?"
+            android:text="@string/what_things_do_not_need_to_be_used_when_using_the_system_and_its_features"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingLeft="10dp"
-            android:text="When this system is used, it contains a number of advantages, the most important is the lack of the need for human resources in the permanent monitoring of the quality of water and change in the nature of water and when monitoring the human there is a lack of accuracy in estimating the efficiency of the water system and return to this system enables the owner of the farm The control is sustainable throughout the time and in any place away from the fish farm and ensure all the time of efficiency of the water system and works to increase the proportion of fish production from the systems monitored electronically from the control systems for human."
+            android:text="@string/when_this_system_is_used_it_contains_a_number_of_advantages_the_most_important_is_the_lack_of_the_need_for_human_resources_in_the_permanent_monitoring_of_the_quality_of_water_and_change_in_the_nature_of_water_and_when_monitoring_the_human_there_is_a_lack_of_accuracy_in_estimating_the_efficiency_of_the_water_system_and_return_to_this_system_enables_the_owner_of_the_farm_the_control_is_sustainable_throughout_the_time_and_in_any_place_away_from_the_fish_farm_and_ensure_all_the_time_of_efficiency_of_the_water_system_and_works_to_increase_the_proportion_of_fish_production_from_the_systems_monitored_electronically_from_the_control_systems_for_human"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp" />
 
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             android:padding="5dp"
-            android:text="What tools do you need in your farm to use this system?"
+            android:text="@string/what_tools_do_you_need_in_your_farm_to_use_this_system"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -83,11 +83,7 @@
             android:gravity="center"
 
             android:paddingLeft="10dp"
-            android:text="Source of electric current
-Server for uploading the data and save it for mobile application
-Some of the technical tools we need to program this system
-Mobile application for the farmer owner to monitoring the system and be notified when unusual thing happend
-"
+            android:text="@string/source_of_electric_current_server_for_uploading_the_data_and_save_it_for_mobile_application_some_of_the_technical_tools_we_need_to_program_this_system_mobile_application_for_the_farmer_owner_to_monitoring_the_system_and_be_notified_when_unusual_thing_happend"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp" />
 
